@@ -9,7 +9,7 @@
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-[Demo](https://seu-usuario.github.io/Mundo-Pet) • [Documentação](./INDEX.md) • [Contribuir](./CONTRIBUTING.md)
+[Demo](https://kevinlopes23.github.io/Mundo-Pet/) • [Documentação](./INDEX.md) • [Contribuir](./CONTRIBUTING.md)
 
 <img src="./assets/screenshots/screenshot-desktop.png" alt="Mundo Pet - Desktop" width="800">
 
@@ -208,7 +208,7 @@ Apenas um navegador web moderno (Chrome, Firefox, Safari, Edge).
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/Mundo-Pet.git
+git clone https://github.com/KevinLopes23/Mundo-Pet.git
 ```
 
 2. Entre na pasta do projeto:
@@ -404,16 +404,16 @@ Contribuições são bem-vindas! Veja o guia [CONTRIBUTING.md](CONTRIBUTING.md) 
 
 ## 👥 Autores
 
-- **Seu Nome** - _Trabalho Inicial_ - [@seu-usuario](https://github.com/seu-usuario)
+- **Seu Nome** - _Trabalho Inicial_ - [@KevinLopes23](https://github.com/KevinLopes23)
 
-Veja também a lista de [contribuidores](https://github.com/seu-usuario/Mundo-Pet/contributors) que participaram deste projeto.
+Veja também a lista de [contribuidores](https://github.com/KevinLopes23/Mundo-Pet/contributors) que participaram deste projeto.
 
 ## 📞 Suporte
 
 Se você tiver alguma dúvida ou problema:
 
-- 🐛 [Abra uma issue](https://github.com/seu-usuario/Mundo-Pet/issues)
-- 💬 [Inicie uma discussão](https://github.com/seu-usuario/Mundo-Pet/discussions)
+- 🐛 [Abra uma issue](https://github.com/KevinLopes23/Mundo-Pet/issues)
+- 💬 [Inicie uma discussão](https://github.com/KevinLopes23/Mundo-Pet/discussions)
 - 📧 Entre em contato: seu-email@exemplo.com
 
 ## ⭐ Mostre seu apoio
