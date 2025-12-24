@@ -95,17 +95,33 @@ header {
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
+  position: relative;
 }
 
-.date-picker span {
+.date-picker input[type="date"] {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   color: var(--content-secondary);
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color-scheme: dark;
+}
+
+.date-picker input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
 .date-picker img {
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
+}
+
+.date-picker .arrow-icon {
+  width: 12px;
+  height: 12px;
 }
 
 /* Schedule List */
@@ -496,4 +512,196 @@ input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .app-container {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  .app-logo {
+    padding: 16px;
+    border-radius: 0 0 16px 0;
+    z-index: 100;
+  }
+
+  .main-content {
+    padding: 80px 16px 20px;
+    gap: 24px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .header-text h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .header-text p {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .date-picker {
+    align-self: flex-start;
+  }
+  .schedule-item {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 16px 12px;
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.02);
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-bottom: none;
+  }
+
+  .schedule-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .schedule-item .time {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bg-brand);
+    min-width: auto;
+  }
+
+  .schedule-item .info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .schedule-item .names {
+    min-width: 0;
+    white-space: normal;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .schedule-item .names strong {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .schedule-item .names span {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .schedule-item .service {
+    min-width: 0;
+    white-space: normal;
+    font-size: 13px;
+    line-height: 18px;
+    padding-left: 0;
+  }
+
+  .remove-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(255, 68, 68, 0.1);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    color: #ff6b6b;
+    border-radius: 6px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .remove-btn:hover {
+    background-color: rgba(255, 68, 68, 0.15);
+    border-color: rgba(255, 68, 68, 0.5);
+  }
+
+  .period-content {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .period-section {
+    margin-bottom: 16px;
+  }
+
+  /* Modal Mobile */
+  .modal-content {
+    padding: 24px 16px;
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .modal-header {
+    margin-bottom: 24px;
+  }
+
+  .modal-header h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .schedule-form {
+    gap: 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row .form-group {
+    width: 100%;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .input-with-icon input {
+    padding-left: 44px !important;
+  }
+
+  .input-with-icon svg {
+    left: 14px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .new-schedule-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    width: calc(100% - 32px);
+    max-width: 400px;
+    padding: 16px 24px;
+    font-size: 15px;
+    box-shadow: 0px 4px 20px rgba(146, 130, 250, 0.4);
+    z-index: 999;
+  }
+
+  .new-schedule-btn:hover {
+    transform: translateX(50%) scale(1.02);
+  }
 }

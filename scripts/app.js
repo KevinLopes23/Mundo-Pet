@@ -180,9 +180,10 @@ class ScheduleUI {
     this.modal = document.getElementById("scheduleModal");
     this.form = document.getElementById("scheduleForm");
     this.scheduleList = document.querySelector(".schedule-list");
-    this.datePicker = document.querySelector(".date-picker span");
+    this.dateFilter = document.getElementById("dateFilter");
 
     this.initializeEventListeners();
+    this.initializeDatePicker();
     this.renderSchedules();
   }
 
@@ -200,8 +201,17 @@ class ScheduleUI {
     // Submeter formulário
     this.form.addEventListener("submit", (e) => this.handleFormSubmit(e));
 
-    // Mudar data (simplificado - apenas exibe)
-    // Você pode adicionar um date picker real aqui
+    // Mudar data
+    this.dateFilter.addEventListener("change", () => this.handleDateChange());
+
+    // Abrir calendário ao clicar no date-picker (ícones ou container)
+    const datePicker = document.querySelector(".date-picker");
+    datePicker.addEventListener("click", (e) => {
+      // Se não clicou diretamente no input, abrir o calendário
+      if (e.target !== this.dateFilter) {
+        this.dateFilter.showPicker();
+      }
+    });
 
     // ESC para fechar
     document.addEventListener("keydown", (e) => {
@@ -209,6 +219,26 @@ class ScheduleUI {
         this.closeModal();
       }
     });
+  }
+
+  initializeDatePicker() {
+    // Definir data atual no formato YYYY-MM-DD para o input date
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    this.dateFilter.value = `${year}-${month}-${day}`;
+  }
+
+  handleDateChange() {
+    // Converter data do input (YYYY-MM-DD) para formato brasileiro (DD/MM/YYYY)
+    const dateValue = this.dateFilter.value;
+    if (dateValue) {
+      const [year, month, day] = dateValue.split("-");
+      const formattedDate = `${day}/${month}/${year}`;
+      this.manager.setCurrentDate(formattedDate);
+      this.renderSchedules();
+    }
   }
 
   openModal() {
@@ -334,9 +364,6 @@ class ScheduleUI {
       const section = this.createPeriodSection(key, period, schedules);
       this.scheduleList.appendChild(section);
     });
-
-    // Atualizar data no picker
-    this.datePicker.textContent = this.manager.currentDate;
   }
 
   createPeriodSection(periodKey, period, schedules) {
