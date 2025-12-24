@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste - Mundo Pet Backend</title>
+    <style>
+      body {
+        font-family: "Courier New", monospace;
+        background: #1a1a1a;
+        color: #00ff00;
+        padding: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .test-section {
+        background: #2a2a2a;
+        border: 2px solid #00ff00;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .test-section h2 {
+        color: #00ff00;
+        margin-top: 0;
+      }
+      button {
+        background: #00ff00;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background: #00cc00;
+      }
+      .result {
+        background: #000;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        font-size: 12px;
+        overflow-x: auto;
+      }
+      .success {
+        color: #00ff00;
+      }
+      .error {
+        color: #ff0000;
+      }
+      .info {
+        color: #00aaff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧪 Teste do Backend - Mundo Pet</h1>
+
+    <div class="test-section">
+      <h2>1. Inicialização</h2>
+      <button onclick="testInit()">Testar Inicialização</button>
+      <div id="init-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>2. Validações</h2>
+      <button onclick="testValidations()">Testar Validações</button>
+      <div id="validation-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>3. Adicionar Agendamentos</h2>
+      <button onclick="testAddSchedule()">Adicionar Válido</button>
+      <button onclick="testAddInvalid()">Adicionar Inválido</button>
+      <button onclick="testAddConflict()">Testar Conflito</button>
+      <div id="add-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>4. Listar Agendamentos</h2>
+      <button onclick="testListSchedules()">Listar Todos</button>
+      <button onclick="testGroupedSchedules()">Listar Agrupados</button>
+      <div id="list-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>5. Remover Agendamentos</h2>
+      <button onclick="testRemoveSchedule()">Remover Agendamento</button>
+      <div id="remove-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>6. Persistência</h2>
+      <button onclick="testPersistence()">Testar localStorage</button>
+      <button onclick="clearAllData()">Limpar Tudo</button>
+      <div id="persistence-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>7. Carregar Dados de Exemplo</h2>
+      <button onclick="loadSampleData()">Carregar Dados</button>
+      <div id="sample-result" class="result"></div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script>
+      let testManager;
+
+      function log(elementId, message, type = "info") {
+        const element = document.getElementById(elementId);
+        const timestamp = new Date().toLocaleTimeString();
+        const className =
+          type === "success" ? "success" : type === "error" ? "error" : "info";
+        element.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+      }
+
+      function clear(elementId) {
+        document.getElementById(elementId).innerHTML = "";
+      }
+
+      // Teste 1: Inicialização
+      function testInit() {
+        clear("init-result");
+        try {
+          testManager = new ScheduleManager();
+          log(
+            "init-result",
+            "✅ ScheduleManager inicializado com sucesso",
+            "success"
+          );
+          log(
+            "init-result",
+            `📊 Data atual: ${testManager.currentDate}`,
+            "info"
+          );
+          log(
+            "init-result",
+            `📦 Dados carregados: ${JSON.stringify(testManager.schedules)}`,
+            "info"
+          );
+        } catch (error) {
+          log("init-result", `❌ Erro: ${error.message}`, "error");
+        }
+      }
+
+      // Teste 2: Validações
+      function testValidations() {
+        clear("validation-result");
+        if (!testManager) testManager = new ScheduleManager();
+
+        // Testar horários
+        const testTimes = [
+          { time: "09:00", expected: true },
+          { time: "12:00", expected: false },
+          { time: "14:00", expected: true },
+          { time: "18:00", expected: false },
+          { time: "20:00", expected: true },
+          { time: "22:00", expected: false },
+        ];
+
+        testTimes.forEach(({ time, expected }) => {
+          const result = testManager.validateTime(time);
+          const status = result === expected ? "✅" : "❌";
+          const type = result === expected ? "success" : "error";
+          log(
+            "validation-result",
+            `${status} ${time}: ${result} (esperado: ${expected})`,
+            type
+          );
+        });
+      }
+
+      // Teste 3: Adicionar Agendamento Válido
+      function testAddSchedule() {
+        clear("add-result");
+        if (!testManager) testManager = new ScheduleManager();
+
+        try {
+          const schedule = testManager.addSchedule({
+            ownerName: "Teste Silva",
+            petName: "Totó",
+            phone: "(11) 98765-4321",
+            service: "Teste de Banho",
+            date: testManager.currentDate,
+            time: "10:00",
+          });
+          log("add-result", "✅ Agendamento adicionado com sucesso", "success");
+          log(
+            "add-result",
+            `📝 Dados: ${JSON.stringify(schedule, null, 2)}`,
+            "info"
+          );
+        } catch (error) {
+          log("add-result", `❌ Erro: ${error.message}`, "error");
+        }
+      }
+
+      // Teste 4: Adicionar Inválido
+      function testAddInvalid() {
+        clear("add-result");
+        if (!testManager) testManager = new ScheduleManager();
+
+        // Teste com campos vazios
+        try {
+          testManager.addSchedule({
+            ownerName: "",
+            petName: "Totó",
+            phone: "(11) 98765-4321",
+            service: "Teste",
+            date: testManager.currentDate,
+            time: "10:00",
+          });
+          log("add-result", "❌ Deveria ter falhado (campo vazio)", "error");
+        } catch (error) {
+          log("add-result", `✅ Validação OK: ${error.message}`, "success");
+        }
+
+        // Teste com horário inválido
+        try {
+          testManager.addSchedule({
+            ownerName: "Teste",
+            petName: "Totó",
+            phone: "(11) 98765-4321",
+            service: "Teste",
+            date: testManager.currentDate,
+            time: "22:00",
+          });
+          log(
+            "add-result",
+            "❌ Deveria ter falhado (horário inválido)",
+            "error"
+          );
+        } catch (error) {
+          log("add-result", `✅ Validação OK: ${error.message}`, "success");
+        }
+      }
+
+      // Teste 5: Conflito de Horário
+      function testAddConflict() {
+        clear("add-result");
+        if (!testManager) testManager = new ScheduleManager();
+
+        try {
+          // Primeiro agendamento
+          testManager.addSchedule({
+            ownerName: "Primeiro",
+            petName: "Pet1",
+            phone: "(11) 91111-1111",
+            service: "Serviço 1",
+            date: testManager.currentDate,
+            time: "11:00",
+          });
+          log("add-result", "✅ Primeiro agendamento criado", "success");
+
+          // Tentar criar conflito
+          testManager.addSchedule({
+            ownerName: "Segundo",
+            petName: "Pet2",
+            phone: "(11) 92222-2222",
+            service: "Serviço 2",
+            date: testManager.currentDate,
+            time: "11:00",
+          });
+          log("add-result", "❌ Deveria ter detectado conflito", "error");
+        } catch (error) {
+          log(
+            "add-result",
+            `✅ Conflito detectado: ${error.message}`,
+            "success"
+          );
+        }
+      }
+
+      // Teste 6: Listar
+      function testListSchedules() {
+        clear("list-result");
+        if (!testManager) testManager = new ScheduleManager();
+
+        const schedules = testManager.getSchedulesByDate(
+          testManager.currentDate
+        );
+        log(
+          "list-result",
+          `📊 Total de agendamentos: ${schedules.length}`,
+          "info"
+        );
+
+        schedules.forEach((schedule, index) => {
+          log(
+            "list-result",
+            `${index + 1}. ${schedule.time} - ${schedule.petName} (${
+              schedule.ownerName
+            })`,
+            "success"
+          );
+        });
+      }
+
+      // Teste 7: Listar Agrupados
+      function testGroupedSchedules() {
+        clear("list-result");
+        if (!testManager) testManager = new ScheduleManager();
+
+        const grouped = testManager.getSchedulesGroupedByPeriod(
+          testManager.currentDate
+        );
+
+        log("list-result", `🌅 Manhã: ${grouped.MORNING.length}`, "info");
+        grouped.MORNING.forEach((s) =>
+          log("list-result", `  • ${s.time} - ${s.petName}`, "success")
+        );
+
+        log("list-result", `☀️ Tarde: ${grouped.AFTERNOON.length}`, "info");
+        grouped.AFTERNOON.forEach((s) =>
+          log("list-result", `  • ${s.time} - ${s.petName}`, "success")
+        );
+
+        log("list-result", `🌙 Noite: ${grouped.NIGHT.length}`, "info");
+        grouped.NIGHT.forEach((s) =>
+          log("list-result", `  • ${s.time} - ${s.petName}`, "success")
+        );
+      }
+
+      // Teste 8: Remover
+      function testRemoveSchedule() {
+        clear("remove-result");
+        if (!testManager) testManager = new ScheduleManager();
+
+        const schedules = testManager.getSchedulesByDate(
+          testManager.currentDate
+        );
+
+        if (schedules.length === 0) {
+          log("remove-result", "⚠️ Nenhum agendamento para remover", "error");
+          return;
+        }
+
+        const firstId = schedules[0].id;
+        const removed = testManager.removeSchedule(
+          testManager.currentDate,
+          firstId
+        );
+
+        if (removed) {
+          log(
+            "remove-result",
+            `✅ Agendamento #${firstId} removido`,
+            "success"
+          );
+          log(
+            "remove-result",
+            `📊 Agendamentos restantes: ${
+              testManager.getSchedulesByDate(testManager.currentDate).length
+            }`,
+            "info"
+          );
+        } else {
+          log("remove-result", "❌ Falha ao remover", "error");
+        }
+      }
+
+      // Teste 9: Persistência
+      function testPersistence() {
+        clear("persistence-result");
+
+        const data = localStorage.getItem("petshop_schedules");
+
+        if (data) {
+          const parsed = JSON.parse(data);
+          log(
+            "persistence-result",
+            "✅ Dados encontrados no localStorage",
+            "success"
+          );
+          log("persistence-result", `📊 Tamanho: ${data.length} bytes`, "info");
+          log(
+            "persistence-result",
+            `📅 Datas: ${Object.keys(parsed).join(", ")}`,
+            "info"
+          );
+          log(
+            "persistence-result",
+            `📝 Conteúdo: ${JSON.stringify(parsed, null, 2)}`,
+            "info"
+          );
+        } else {
+          log("persistence-result", "⚠️ Nenhum dado no localStorage", "error");
+        }
+      }
+
+      // Limpar tudo
+      function clearAllData() {
+        clear("persistence-result");
+        localStorage.removeItem("petshop_schedules");
+        testManager = new ScheduleManager();
+        log("persistence-result", "🗑️ Todos os dados foram limpos", "success");
+      }
+
+      // Carregar dados de exemplo
+      function loadSampleData() {
+        clear("sample-result");
+
+        const sampleData = {
+          [testManager.currentDate]: [
+            {
+              id: Date.now(),
+              ownerName: "Fernanda Costa",
+              petName: "Thor",
+              phone: "(11) 98765-4321",
+              service: "Vacinação",
+              date: testManager.currentDate,
+              time: "09:00",
+              period: "MORNING",
+            },
+            {
+              id: Date.now() + 1,
+              ownerName: "João Souza",
+              petName: "Mel",
+              phone: "(11) 98765-4322",
+              service: "Corte de Unhas",
+              date: testManager.currentDate,
+              time: "13:00",
+              period: "AFTERNOON",
+            },
+            {
+              id: Date.now() + 2,
+              ownerName: "Camila Santos",
+              petName: "Max",
+              phone: "(11) 98765-4323",
+              service: "Limpeza de Dentes",
+              date: testManager.currentDate,
+              time: "20:00",
+              period: "NIGHT",
+            },
+          ],
+        };
+
+        localStorage.setItem("petshop_schedules", JSON.stringify(sampleData));
+        testManager = new ScheduleManager();
+
+        log("sample-result", "✅ Dados de exemplo carregados", "success");
+        log("sample-result", "📊 3 agendamentos criados", "info");
+        log(
+          "sample-result",
+          "🔄 Recarregue a página principal para ver",
+          "info"
+        );
+      }
+
+      // Inicializar automaticamente
+      window.onload = () => {
+        testInit();
+      };
+    </script>
+  </body>
+</html>

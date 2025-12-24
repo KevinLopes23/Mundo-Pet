@@ -452,3 +452,48 @@ header {
 .modal-content::-webkit-scrollbar-thumb:hover {
   background: var(--border-secondary);
 }
+
+/* Mensagens de feedback */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Mensagem quando não há agendamentos */
+.no-schedules {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: var(--content-secondary);
+  text-align: center;
+  padding: 24px;
+  font-style: italic;
+}
+
+/* Ajustes para inputs de date e time */
+input[type="date"],
+input[type="time"] {
+  color-scheme: dark;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}

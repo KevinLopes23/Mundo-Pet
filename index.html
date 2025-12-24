@@ -300,12 +300,7 @@
                       stroke-linecap="round"
                     />
                   </svg>
-                  <input
-                    type="text"
-                    id="date"
-                    placeholder="10/01/2024"
-                    required
-                  />
+                  <input type="date" id="date" required />
                 </div>
               </div>
               <div class="form-group">
@@ -332,7 +327,7 @@
                       stroke-linecap="round"
                     />
                   </svg>
-                  <input type="text" id="time" placeholder="12:00" required />
+                  <input type="time" id="time" required />
                 </div>
               </div>
             </div>
@@ -345,38 +340,6 @@
       </div>
     </div>
 
-    <script>
-      const modal = document.getElementById("scheduleModal");
-      const openBtn = document.getElementById("openModalBtn");
-      const overlay = document.getElementById("modalOverlay");
-      const form = document.getElementById("scheduleForm");
-
-      function openModal() {
-        modal.classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeModal() {
-        modal.classList.remove("active");
-        document.body.style.overflow = "";
-      }
-
-      openBtn.addEventListener("click", openModal);
-      overlay.addEventListener("click", closeModal);
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        alert("Agendamento criado com sucesso!");
-        closeModal();
-        form.reset();
-      });
-
-      // Fechar modal com ESC
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && modal.classList.contains("active")) {
-          closeModal();
-        }
-      });
-    </script>
+    <script src="scripts/app.js"></script>
   </body>
 </html>
