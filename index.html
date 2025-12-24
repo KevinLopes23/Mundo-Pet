@@ -153,7 +153,230 @@
         </div>
       </div>
 
-      <button class="new-schedule-btn">NOVO AGENDAMENTO</button>
+      <button class="new-schedule-btn" id="openModalBtn">
+        NOVO AGENDAMENTO
+      </button>
+
+      <!-- Modal de Novo Agendamento -->
+      <div class="modal" id="scheduleModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <h2>Agende um atendimento</h2>
+              <p class="modal-subtitle">
+                Preencha os dados do cliente para realizar o agendamento:
+              </p>
+            </div>
+          </div>
+
+          <form class="schedule-form" id="scheduleForm">
+            <div class="form-group">
+              <label for="ownerName">Nome do tutor</label>
+              <div class="input-with-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="10"
+                    cy="6"
+                    r="3.5"
+                    stroke="#9282FA"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M4 16.5C4 13.5 6.5 11 10 11C13.5 11 16 13.5 16 16.5"
+                    stroke="#9282FA"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <input
+                  type="text"
+                  id="ownerName"
+                  placeholder="Helena Souza"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="petName">Nome do pet</label>
+              <div class="input-with-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <ellipse cx="10" cy="13" rx="3" ry="2.5" fill="#9282FA" />
+                  <circle cx="7" cy="8" r="1.5" fill="#9282FA" />
+                  <circle cx="13" cy="8" r="1.5" fill="#9282FA" />
+                  <circle cx="5" cy="11" r="1.5" fill="#9282FA" />
+                  <circle cx="15" cy="11" r="1.5" fill="#9282FA" />
+                </svg>
+                <input
+                  type="text"
+                  id="petName"
+                  placeholder="Cheddar"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefone</label>
+              <div class="input-with-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.5 3.5L8 5.5C8.5 6.2 8.4 7.1 7.8 7.7L7 8.5C7 8.5 7 10.5 9 12.5C11 14.5 13 14.5 13 14.5L13.8 13.7C14.4 13.1 15.3 13 16 13.5L18 15C18.8 15.6 19 16.7 18.4 17.6L17.5 18.8C17 19.4 16.2 19.7 15.4 19.6C12.4 19.2 9.5 17.8 7.3 15.6C5.1 13.4 3.7 10.5 3.3 7.5C3.2 6.7 3.5 5.9 4.1 5.4L5.3 4.5C6.2 3.9 7.3 4.1 7.9 4.9L6.5 3.5Z"
+                    stroke="#9282FA"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="(00) 0 0000-0000"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="service">Descrição do serviço</label>
+              <input
+                type="text"
+                id="service"
+                placeholder="Banho e tosa"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">Data</label>
+                <div class="input-with-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="3"
+                      y="4"
+                      width="14"
+                      height="13"
+                      rx="2"
+                      stroke="#9282FA"
+                      stroke-width="1.5"
+                    />
+                    <path d="M3 8H17" stroke="#9282FA" stroke-width="1.5" />
+                    <path
+                      d="M7 2V5"
+                      stroke="#9282FA"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M13 2V5"
+                      stroke="#9282FA"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <input
+                    type="text"
+                    id="date"
+                    placeholder="10/01/2024"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="time">Hora</label>
+                <div class="input-with-icon">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="10"
+                      cy="10"
+                      r="7"
+                      stroke="#9282FA"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M10 6V10L13 12"
+                      stroke="#9282FA"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <input type="text" id="time" placeholder="12:00" required />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-submit">AGENDAR</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+
+    <script>
+      const modal = document.getElementById("scheduleModal");
+      const openBtn = document.getElementById("openModalBtn");
+      const overlay = document.getElementById("modalOverlay");
+      const form = document.getElementById("scheduleForm");
+
+      function openModal() {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      openBtn.addEventListener("click", openModal);
+      overlay.addEventListener("click", closeModal);
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Agendamento criado com sucesso!");
+        closeModal();
+        form.reset();
+      });
+
+      // Fechar modal com ESC
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          closeModal();
+        }
+      });
+    </script>
   </body>
 </html>
