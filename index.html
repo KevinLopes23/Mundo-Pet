@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mundo Pet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@700&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- App Name -->
+      <div class="app-logo">
+        <img
+          src="https://www.figma.com/api/mcp/asset/1889f8e4-34b0-4e89-8de9-f0afe6641adc"
+          alt="Logo"
+        />
+        <span>Mundo pet</span>
+      </div>
+
+      <div class="main-content">
+        <!-- Header -->
+        <header>
+          <div class="header-text">
+            <h1>Sua agenda</h1>
+            <p>
+              Aqui você pode ver todos os clientes e serviços agendados para
+              hoje.
+            </p>
+          </div>
+          <div class="date-picker">
+            <img
+              src="https://www.figma.com/api/mcp/asset/08649cfe-4511-4b95-a08e-8ad7782a041d"
+              alt="Calendar"
+            />
+            <span>10/01/2024</span>
+            <img
+              src="https://www.figma.com/api/mcp/asset/a137b23d-6a42-4211-ae5a-e218f20b6548"
+              alt="Arrow"
+            />
+          </div>
+        </header>
+
+        <!-- Schedule List -->
+        <div class="schedule-list">
+          <!-- Morning -->
+          <section class="period-section">
+            <div class="period-header">
+              <div class="period-title">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/42c4134c-adb7-4697-90b2-2ce6e4639e2e"
+                  alt="Morning"
+                />
+                <h2>Manhã</h2>
+              </div>
+              <span class="period-time">09h-12h</span>
+            </div>
+            <div class="period-content">
+              <div class="schedule-item">
+                <span class="time">09:00</span>
+                <div class="info">
+                  <div class="names">
+                    <strong>Thor</strong>
+                    <span>/ Fernanda Costa</span>
+                  </div>
+                  <span class="service">Vacinação</span>
+                </div>
+                <button class="remove-btn">Remover agendamento</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Afternoon -->
+          <section class="period-section">
+            <div class="period-header">
+              <div class="period-title">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/2c3381cf-0842-4fc6-802f-fd685e952ea6"
+                  alt="Afternoon"
+                />
+                <h2>Tarde</h2>
+              </div>
+              <span class="period-time">13h-18h</span>
+            </div>
+            <div class="period-content">
+              <div class="schedule-item">
+                <span class="time">13:00</span>
+                <div class="info">
+                  <div class="names">
+                    <strong>Mel</strong>
+                    <span>/ João Souza</span>
+                  </div>
+                  <span class="service">Corte de Unhas</span>
+                </div>
+                <button class="remove-btn">Remover agendamento</button>
+              </div>
+              <div class="schedule-item">
+                <span class="time">14:00</span>
+                <div class="info">
+                  <div class="names">
+                    <strong>Bella</strong>
+                    <span>/ Pedro Martins</span>
+                  </div>
+                  <span class="service">Aplicação de Anti-pulgas</span>
+                </div>
+                <button class="remove-btn">Remover agendamento</button>
+              </div>
+              <div class="schedule-item">
+                <span class="time">15:00</span>
+                <div class="info">
+                  <div class="names">
+                    <strong>Simba</strong>
+                    <span>/ Juliana Rocha</span>
+                  </div>
+                  <span class="service">Tosa Higiênica</span>
+                </div>
+                <button class="remove-btn">Remover agendamento</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Night -->
+          <section class="period-section">
+            <div class="period-header">
+              <div class="period-title">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/5ab9bc23-61ab-48fb-8ad1-f431f638c515"
+                  alt="Night"
+                />
+                <h2>Noite</h2>
+              </div>
+              <span class="period-time">19h-21h</span>
+            </div>
+            <div class="period-content">
+              <div class="schedule-item">
+                <span class="time">20:00</span>
+                <div class="info">
+                  <div class="names">
+                    <strong>Max</strong>
+                    <span>/ Camila Santos</span>
+                  </div>
+                  <span class="service">Limpeza de Dentes</span>
+                </div>
+                <button class="remove-btn">Remover agendamento</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <button class="new-schedule-btn">NOVO AGENDAMENTO</button>
+    </div>
+  </body>
+</html>

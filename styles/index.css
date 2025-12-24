@@ -1,0 +1,264 @@
+/* Importa os estilos globais de global.css */
+@import url("./global.css");
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #14151d;
+}
+
+.app-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo */
+.app-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: var(--bg-tertiary);
+  border-radius: 0 0 12px 0;
+}
+
+.app-logo img {
+  width: 20px;
+  height: 20px;
+}
+
+.app-logo span {
+  font-family: "Familjen Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--bg-brand);
+  text-transform: uppercase;
+}
+
+/* Main Content */
+.main-content {
+  width: 100%;
+  max-width: 871px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  max-width: 600px;
+}
+
+.header-text h1 {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--content-primary);
+}
+
+.header-text p {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--content-secondary);
+}
+
+.date-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.date-picker span {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: var(--content-secondary);
+}
+
+.date-picker img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Schedule List */
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.period-section {
+  background-color: var(--bg-tertiary);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.period-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #2e2c30;
+}
+
+.period-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.period-title h2 {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--content-primary);
+}
+
+.period-title img {
+  width: 20px;
+  height: 20px;
+}
+
+.period-time {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--content-secondary);
+}
+
+.period-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 12px;
+  height: 48px;
+  border-bottom: 1px solid var(--border-divisor);
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-item .time {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--content-primary);
+  min-width: 45px;
+  flex-shrink: 0;
+}
+
+.schedule-item .info {
+  display: contents;
+}
+
+.schedule-item .names {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 195px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.schedule-item .names strong {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--content-primary);
+}
+
+.schedule-item .names span {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--content-secondary);
+}
+
+.schedule-item .service {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--content-secondary);
+  min-width: 220px;
+  flex: 1;
+}
+
+.remove-btn {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--content-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.remove-btn:hover {
+  color: var(--content-secondary);
+}
+
+/* New Schedule Button */
+.new-schedule-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--bg-brand);
+  color: #050505;
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 40px 0px rgba(146, 130, 250, 0.3);
+  text-transform: uppercase;
+  transition: transform 0.2s;
+}
+
+.new-schedule-btn:hover {
+  transform: scale(1.05);
+}
