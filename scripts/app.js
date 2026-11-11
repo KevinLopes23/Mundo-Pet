@@ -4,19 +4,19 @@ const PERIODS = {
     name: "Manhã",
     start: 9,
     end: 12,
-    icon: "https://www.figma.com/api/mcp/asset/42c4134c-adb7-4697-90b2-2ce6e4639e2e",
+    icon: "assets/icons/period-morning.svg",
   },
   AFTERNOON: {
     name: "Tarde",
     start: 13,
     end: 18,
-    icon: "https://www.figma.com/api/mcp/asset/2c3381cf-0842-4fc6-802f-fd685e952ea6",
+    icon: "assets/icons/period-afternoon.svg",
   },
   NIGHT: {
     name: "Noite",
     start: 19,
     end: 21,
-    icon: "https://www.figma.com/api/mcp/asset/5ab9bc23-61ab-48fb-8ad1-f431f638c515",
+    icon: "assets/icons/period-night.svg",
   },
 };
 
